@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Warriors Connect | Gamified Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen">
+        <div class="login-box">
+            <h2 class="flex items-center justify-center space-x-2">
+                <i class="fas fa-seedling"></i> <span>Eco-Warriors</span>
+            </h2>
+            <input type="text" id="username" placeholder="Username ">
+            <input type="password" id="password" placeholder="Password ">
+            <button onclick="simulateLogin()">LOG IN</button>
+
+            <div style="margin: 1.5rem 0; color: var(--text-secondary); font-size: 0.9rem;">— OR CONNECT WITH —</div>
+            <div class="social-login">
+                <button class="social-btn btn-google" onclick="simulateSocialLogin('Gmail')">
+                    <i class="fab fa-google mr-2"></i> Log in with Gmail
+                </button>
+                <button class="social-btn btn-facebook" onclick="simulateSocialLogin('Facebook')">
+                    <i class="fab fa-facebook-f mr-2"></i> Log in with Facebook
+                </button>
+                <button class="social-btn btn-microsoft" onclick="simulateSocialLogin('Microsoft')">
+                    <i class="fab fa-microsoft mr-2"></i> Log in with Microsoft
+                </button>
+            </div>
+            <p id="login-message">Use 'aarav' for the username to test the app.</p>
+        </div>
+    </div>
+    <div id="app-container" class="container">
+        <nav class="sidebar">
+            <h1 class="logo"><i class="fas fa-leaf"></i> Eco-Warriors</h1>
+
+            <ul class="nav-links">
+                <li><a href="#dashboard" class="active" onclick="showView('dashboard')"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+                <li><a href="#eco-profile" onclick="showView('eco-profile')"><i class="fas fa-user-alt"></i> <span>My Eco-Profile</span></a></li>
+                <li><a href="#missions-hub" onclick="showView('missions-hub')"><i class="fas fa-bullseye"></i> <span>Missions Hub</span></a></li>
+                <li><a href="#leaderboard" onclick="showView('leaderboard')"><i class="fas fa-list-ol"></i> <span>Leaderboard</span></a></li>
+                <li><a href="#community-map" onclick="showView('community-map')"><i class="fas fa-map-marked-alt"></i> <span>Community Map</span></a></li>
+                <li><a href="#chatbot" onclick="showView('chatbot')"><i class="fas fa-robot"></i> <span>Eco-Guru Chatbot</span></a></li>
+                <li><a href="market.html" onclick="showView('Plants Store')"><i class="fas fa-chart-line"></i> <span>Plants Store</span></a></li>
+                <li><a href="#rewards" onclick="showView('rewards')"><i class="fas fa-trophy"></i> <span>Redeem Rewards</span></a></li>
+            </ul>
+            <div class="sidebar-footer">App Version 2.1 (Enhanced)</div>
+        </nav>
+
+        <main class="main-content">
+            <section id="dashboard">
+                <h2>Dashboard</h2>
+                <div class="cards-container" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <article class="card dashboard-welcome" style="--card-index: 1;">
+                        <h3>Welcome back, Aarav!</h3>
+                        <p>You are currently Level <span id="current-level">12</span>. Your next goal is to reach <span id="next-level-points">4000</span> points.</p>
+                        <div class="progress-bar-container">
+                            <div id="level-progress-bar" class="progress-bar" style="width: 80%;"></div>
+                        </div>
+                    </article>
+                    <article class="card impact-card" style="--card-index: 2;">
+                        <i class="fas fa-leaf" style="color: var(--accent-secondary);"></i>
+                        <h3 id="current-points">3,450</h3>
+                        <p>Your Eco-Points</p>
+                    </article>
+                    <article class="card impact-card" style="--card-index: 3;">
+                        <i class="fas fa-star" style="color: var(--accent-gold);"></i>
+                        <h3 id="total-impact-score">8.5/10</h3>
+                        <p>Total Impact Score</p>
+                    </article>
+                    <article class="card impact-card" style="--card-index: 4;">
+                        <i class="fas fa-fire" style="color: var(--accent-gold);"></i>
+                        <h3>7 Days</h3>
+                        <p>Current Streak</p>
+                    </article>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Daily Goals</h3>
+                <div id="daily-goals-list-card" class="card" style="--card-index: 5;">
+                    <ul id="daily-goals-list" style="list-style: disc; margin-left: 1.5rem; color: var(--text-secondary);">
+                        </ul>
+                </div>
+            </section>
+
+            <section id="eco-profile" style="display:none;">
+                <h2>My Eco-Profile</h2>
+                <div class="card profile-grid">
+                    <div class="profile-summary">
+                        <img src="boy.jpg" alt="User Avatar" class="avatar">
+                        <h3>Aarav Sharma</h3>
+                        <p>Level <span id="profile-level">12</span> - Earth Guardian</p>
+                        <p class="points" id="profile-points">3,450 Eco-Points</p>
+                    </div>
+                    <div class="profile-stats">
+                        <h3>My Lifetime Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card"> <i class="fas fa-bullseye"></i> <h4>28</h4> <p>Missions Done</p> </div>
+                            <div class="stat-card"> <i class="fas fa-tree"></i> <h4>12</h4> <p>Trees Planted</p> </div>
+                            <div class="stat-card"> <i class="fas fa-recycle"></i> <h4>45 Kg</h4> <p>Waste Recycled</p> </div>
+                        </div>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-secondary);">Last Active: <span id="last-login-date"></span></p>
+                    </div>
+                </div>
+                <h3 style="margin-top:2rem;">My Badge Collection</h3>
+                <div class="badges-grid-container card">
+                        <div class="badges-grid">
+                        <div class="badge-item unlocked" title="Waste Warrior: Segregated 100 items"><i class="fas fa-trash-alt"></i><p>Waste Warrior</p></div>
+                        <div class="badge-item unlocked" title="Tree Hugger: Planted 10+ trees"><i class="fas fa-tree"></i><p>Tree Hugger</p></div>
+                        <div class="badge-item unlocked" title="Community Champ: Joined 5+ events"><i class="fas fa-users"></i><p>Community Champ</p></div>
+                        <div class="badge-item unlocked" title="7-Day Streak: Logged in for 7 days straight"><i class="fas fa-fire"></i><p>Streak Master</p></div>
+                        <div class="badge-item" title="Recycle Pro: Recycled 50Kg of waste"><i class="fas fa-recycle"></i><p>Recycle Pro</p></div>
+                        <div class="badge-item" title="Water Saver: Completed 5 water saving missions"><i class="fas fa-tint"></i><p>Water Saver</p></div>
+                        <div class="badge-item" title="Energy Expert: Completed 5 energy saving missions"><i class="fas fa-bolt"></i><p>Energy Expert</p></div>
+                        <div class="badge-item" title="Top Planter: Planted 25+ trees"><i class="fas fa-seedling"></i><p>Top Planter</p></div>
+                    </div>
+                </div>
+            </section>
+
+            <h2>Live Missions Hub</h2>
+                <div id="mission-filters" class="filters">
+                    <button class="filter-btn active" data-filter="all" onclick="filterMissions('all')">All</button>
+                    <button class="filter-btn" data-filter="in_progress" onclick="filterMissions('in_progress')">In Progress</button>
+                    <button class="filter-btn" data-filter="cleanup" onclick="filterMissions('cleanup')">Clean-Up</button>
+                    <button class="filter-btn" data-filter="plantation" onclick="filterMissions('plantation')">Plantation</button>
+                    <button class="filter-btn" data-filter="online" onclick="filterMissions('online')">Online</button>
+                    <button class="filter-btn" data-filter="completed" onclick="filterMissions('completed')">Completed</button>
+                
+                </div>
+                <div id="missions-container" class="cards-container">
+                    </div>
+            </section>
+
+            <section id="leaderboard" style="display:none;">
+                <h2>Leaderboard</h2>
+                <div class="filters">
+                    <button class="filter-btn active">College Rank</button>
+                    <button class="filter-btn">Friends Rank</button>
+                    <button class="filter-btn">Weekly Rank</button>
+                </div>
+                <div class="card" style="overflow-x: auto;">
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Name</th>
+                                <th>Branch</th>
+                                <th>Missions</th>
+                                <th>Eco-Points</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboard-body">
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="community-map" style="display:none;">
+                <h2>Community Map</h2>
+                <p class="text-secondary" style="margin-bottom: 1rem;">View active mission locations and community hotspots.</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.2709214732155!2d75.75058778485292!3d31.326074281404118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5a77f3a9e343%3A0x6a0c0e7c5b16e8b4!2sLovely%20Professional%20University!5e0!3m2!1sen!2sin!4v1701389279787!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </section>
+
+            <section id="chatbot" style="display:none;">
+                <h2>Eco-Guru Chatbot</h2>
+                <div class="chat-window">
+                    <div id="chat-messages" class="chat-messages">
+                        <div class="message msg-bot"><p>Hello Aarav! I am your Eco-Guru 🤖. How can I help you be more eco-friendly today?</p></div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chat-input-text" placeholder="Type your message...">
+                        <button id="send-chat-btn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="Plants Store" style="display:none;">
+                <h2>Plants store </h2>
+                
+            </section>
+
+            <section id="rewards" style="display:none;">
+                <h2>Redeem Rewards</h2>
+                <div class="cards-container">
+                    <article class="card reward-card" style="--card-index: 1;">
+                        <h4>Eco-Warriors T-Shirt</h4>
+                        <p class="points-cost">5000 Eco-Points</p>
+                        <button class="redeem-btn disabled">Not Enough Points</button>
+                    </article>
+                    <article class="card reward-card" style="--card-index: 2;">
+                        <h4>Plant a Tree in Your Name</h4>
+                        <p class="points-cost">2500 Eco-Points</p>
+                        <button class="redeem-btn">Redeem Now</button>
+                    </article>
+                    <article class="card reward-card" style="--card-index: 3;">
+                        <h4>20% Off at Green Cafe</h4>
+                        <p class="points-cost">1000 Eco-Points</p>
+                        <button class="redeem-btn">Redeem Now</button>
+                    </article>
+                    <article class="card reward-card" style="--card-index: 4;">
+                        <h4>Exclusive Avatar Frame</h4>
+                        <p class="points-cost">1500 Eco-Points</p>
+                        <button class="redeem-btn">Redeem Now</button>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

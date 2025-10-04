@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* CSS Variables - ADAPTED FOR LIGHT THEME */
+        :root {
+            --bg-primary: #e9f0e9; /* Very light almost white */
+            --bg-secondary: #78beda; /* Pure white for cards */
+            --text-primary: #161a24; /* Dark charcoal */
+            --text-secondary: #323a47; /* Medium grey */
+            --accent-primary: #04577e; /* Brighter Blue - Main Action */
+            --accent-secondary: #37a09b; /* Brighter Teal - Eco Points */
+            --accent-gold: #5e4930; /* Muted Gold - Rewards/Rank */
+            --shadow: 0 4px 6px rgba(92, 53, 53, 0.08); /* Lighter shadow */
+            --security-danger: #e53e3e; /* Red for errors */
+            --level-hard: #e53e3e;
+            --level-medium: #f6ad55;
+            --level-easy: #54d4ce;
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body 
+        
+
+        /* --- LOGIN SCREEN STYLES --- */
+        #login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary); /* Consistent with body */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .login-box {
+            background-color: var(--bg-secondary); /* White card */
+            padding: 3rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .login-box h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-secondary);
+        }
+        .login-box input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1rem;
+            background-color: var(--bg-primary); /* Lighter input background */
+            border: 1px solid #e5edee; /* Light border */
+            color: var(--text-primary);
+            border-radius: 6px;
+        }
+        .login-box button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--accent-primary);
+            color: rgb(245, 243, 243);
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .login-box button:hover {
+            background-color: #7aafe4; /* Slightly darker hover */
+        }
+        #login-message {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* SOCIAL LOGIN STYLES - Kept colors consistent for brands */
+        .social-login {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem;
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            border: none;
+        }
+        .social-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Specific Provider Colors - ADAPTED FOR LIGHT THEME (text color change) */
+        .btn-google { background-color: #e22a1a; color: white; }
+        .btn-facebook { background-color: #06080a; color: white; }
+        .btn-microsoft { background-color: #22da6f; color: white; }
+
+
+        /* --- APPLICATION CONTAINER STYLES --- */
+
+        .container {
+            display: none; /* Hidden until login */
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* ========== Sidebar Styles ========== */
+        .sidebar {
+            width: 320px;
+            background-color: var(--bg-secondary); /* White sidebar */
+            padding: 2.0rem;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            /* Glassmorphism for light theme */
+            background-color: rgba(139, 216, 199, 0.85);
+            backdrop-filter: blur(10px); /* Subtle blur */
+            border-right: 1px solid rgba(27, 21, 21, 0.05); /* Light border */
+            box-shadow: var(--shadow);
+        }h1
+
+        .logo {
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            flex-grow: 1;
+        }
+
+        .nav-links li { margin-bottom: 1rem; }
+
+        .nav-links li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav-links li a i {
+            margin-right: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-links a.active,
+        .nav-links li a:hover {
+            background-color: var(--accent-primary);
+            color: rgb(114, 219, 146) /* Text white on active blue */
+        }
+
+        /* ========== Main Content Styles ========== */
+        .main-content {
+            flex-grow: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .main-content section { margin-bottom: 4rem; }
+
+        .main-content h2 {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-primary);
+        }
+
+        .main-content h3 { font-size: 1.3rem; margin-bottom: 1rem; }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--bg-secondary); /* Base white for cards */
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e2e8f0; /* Light border for cards */
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            box-shadow: var(--shadow);
+            color: var(--text-primary); /* Default text color for cards */
+
+            /* Default LIGHT overlay for all cards */
+            background-image: linear-gradient(rgba(134, 151, 230, 0.8), rgba(255, 255, 255, 0.8));
+        }
+
+        /* Specific card backgrounds - ADAPTED FOR LIGHT THEME */
+        .card.dashboard-welcome {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                              url('https://images.unsplash.com/photo-1547480575-d14f3b2075a3?q=80&w=2070&auto=format&fit=crop'); /* Bright, inviting forest path */
+        }
+        .card.impact-card {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                              url('https://images.unsplash.com/photo-1579547630713-33e50dfb6c08?q=80&w=2070&auto=format&fit=crop'); /* Clear blue water, clean */
+        }
+        #daily-goals-list-card {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                              url('https://images.unsplash.com/photo-1517400346083-06692f8d488c?q=80&w=2070&auto=format&fit=crop'); /* Fresh green leaves, vibrant */
+        }
+
+        /* Profile Section Cards */
+        #eco-profile .profile-grid .profile-summary {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+                              url('https://images.unsplash.com/photo-1499002238440-d264edd596ec?q=80&w=2070&auto=format&fit=crop'); /* Bright mountain with clear sky */
+            background-size: cover; background-position: center;
+            padding: 1.5rem; border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        #eco-profile .profile-grid .profile-stats {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)),
+                              url('https://images.unsplash.com/photo-1490682246747-817e99732738?q=80&w=2070&auto=format&fit=crop'); /* Bright, open field */
+            background-size: cover; background-position: center;
+            padding: 1.5rem; border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        #eco-profile .badges-grid-container {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                              url('https://images.unsplash.com/photo-1574341103099-a35978939634?q=80&w=2070&auto=format&fit=crop'); /* Bright, magical forest */
+            box-shadow: var(--shadow);
+        }
+
+        /* Missions Hub Cards */
+        .mission-card {
+            background-image: linear-gradient(rgba(204, 68, 68, 0.8), rgba(231, 243, 64, 0.8)),
+                              url('https://images.unsplash.com/photo-1476514525535-cd67b1456578?q=80&w=2070&auto=format&fit=crop'); /* Bright, generic nature */
+        }
+        .mission-card[data-type="cleanup"] {
+             background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1582765324545-88574163013d?q=80&w=2070&auto=format&fit=crop'); /* Sunny beach cleanup */
+        }
+        .mission-card[data-type="plantation"] {
+             background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1534947926724-4f017ef3699b?q=80&w=2070&auto=format&fit=crop'); /* Bright tree planting */
+        }
+        .mission-card[data-type="online"] {
+             background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1526481237096-ad4b87834247?q=80&w=2070&auto=format&fit=crop'); /* Laptop in bright nature */
+        }
+
+        /* Leaderboard */
+        #leaderboard .card {
+             background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1470252815774-0a4a6e133e14?q=80&w=2070&auto=format&fit=crop'); /* Bright, open landscape */
+        }
+
+        /* Community Map */
+        #community-map .map-container {
+             background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1517400346083-06692f8d488c?q=80&w=2070&auto=format&fit=crop'); /* Earth from above, bright */
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+        #community-map .map-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+            /* Invert and lighten map for light theme */
+            filter: grayscale(20%) brightness(1.1);
+        }
+
+
+        /* Chatbot */
+        #chatbot .chat-window {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1541334960548-a901035985ae?q=80&w=2070&auto=format&fit=crop'); /* Robot in bright, natural setting */
+            background-size: cover; background-position: center;
+        }
+
+
+        /* Impact Tracker */
+        #impact-tracker .chart-card {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1507647242139-4467d34ac799?q=80&w=2070&auto=format&fit=crop'); /* Solar panels / clean energy */
+            box-shadow: var(--shadow);
+        }
+
+        /* Rewards */
+        .reward-card {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1599380630639-c5c2921a221f?q=80&w=2070&auto=format&fit=crop'); /* Shiny gold medal / award */
+        }
+        .reward-card:nth-child(2) { /* Plant a Tree */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1577908480749-da35f5243e39?q=80&w=2070&auto=format&fit=crop'); /* Hand planting small tree */
+        }
+        .reward-card:nth-child(3) { /* Green Cafe */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+                               url('https://images.unsplash.com/photo-1510006733230-6752d4806a1c?q=80&w=2070&auto=format&fit=crop'); /* Bright, airy cafe with plants */
+        }
+
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(31, 23, 23, 0.1); /* Lighter hover shadow */
+        }
+
+        .filters { margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;}
+        .filter-btn { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--accent-primary); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; transition: 0.3s; }
+        .filter-btn.active, .filter-btn:hover { background: var(--accent-primary); color: white; } /* White text on active blue */
+
+        /* Mission Card Specifics */
+        .mission-card { position: relative; }
+        .mission-card .reward { position: absolute; top: 10px; right: 10px; background: var(--accent-secondary); padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600; color: white; }
+        .mission-card .status { margin-top: 1rem; font-weight: 500; }
+        .mission-card .status.in-progress { color: var(--accent-primary); }
+        .mission-card .status.completed { color: var(--accent-secondary); }
+
+        .mission-details { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem; }
+        .mission-details span { margin-right: 0.8rem; font-weight: 500;}
+        .mission-details i { margin-right: 0.3rem;}
+        .mission-details .difficulty { padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.75rem; font-weight: 600; color: white;} /* Difficulty text white for contrast */
+        .difficulty.Easy { background-color: var(--level-easy); }
+        .difficulty.Medium { background-color: var(--level-medium); }
+        .difficulty.Hard { background-color: var(--level-hard); }
+
+
+        /* Dashboard Specifics */
+        .progress-bar-container { background: rgba(226, 232, 240, 0.5); border-radius: 10px; padding: 0.5rem; margin-top: 1rem; } /* Lighter background */
+        .progress-bar { height: 10px; background: var(--accent-secondary); border-radius: 8px; transition: width 1s ease-out; }
+
+        /* ALL NEW & DETAILED SECTIONS STYLES (Retained) */
+        #eco-profile .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;}
+        #eco-profile .profile-summary .avatar { width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--accent-primary); margin-bottom: 1rem; }
+        #eco-profile .profile-summary p { color: var(--text-secondary); }
+        #eco-profile .profile-summary .points { font-size: 1.2rem; color: var(--accent-secondary); font-weight: 600; margin-top: 0.5rem; }
+        #eco-profile .profile-stats .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        #eco-profile .profile-stats .stat-card { background: rgba(248, 250, 252, 0.7); text-align: center; padding: 1rem; border-radius: 8px; box-shadow: var(--shadow); } /* Lighter transparent */
+        #eco-profile .stat-card i { font-size: 1.5rem; color: var(--accent-secondary); margin-bottom: 0.5rem;}
+        #eco-profile .badges-grid-container { padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0; } /* Changed to a container for the badges grid */
+        #eco-profile .badges-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 1rem; }
+        #eco-profile .badge-item { text-align: center; color: var(--text-secondary); position: relative; }
+        #eco-profile .badge-item i { font-size: 2rem; background-color: rgba(226, 232, 240, 0.7); color: var(--text-primary); width: 60px; height: 60px; display: grid; place-items: center; border-radius: 50%; margin: 0 auto 0.5rem; transition: 0.3s; } /* Lighter transparency */
+        #eco-profile .badge-item.unlocked i { color: var(--accent-gold); box-shadow: 0 0 15px var(--accent-gold);}
+        #chatbot .chat-window { max-width: 800px; margin: auto; background: var(--bg-secondary); border-radius: 12px; height: 500px; display: flex; flex-direction: column; box-shadow: var(--shadow);}
+        #chatbot .chat-messages { flex-grow: 1; padding: 1rem; overflow-y: auto; }
+        #chatbot .message { display: flex; margin-bottom: 1rem; max-width: 80%; }
+        #chatbot .message p { padding: 0.8rem 1rem; border-radius: 18px; line-height: 1.5;}
+        #chatbot .msg-bot { align-self: flex-start; }
+        #chatbot .msg-bot p { background: rgba(226, 232, 240, 0.7); color: var(--text-primary); } /* Lighter transparent */
+        #chatbot .msg-user { align-self: flex-end; }
+        #chatbot .msg-user p { background: rgba(66, 153, 225, 0.7); color: white; } /* Lighter transparent, blue, white text */
+        #chatbot .chat-input { display: flex; padding: 1rem; border-top: 1px solid #e2e8f0; background: rgba(255, 255, 255, 0.7); border-radius: 0 0 12px 12px;} /* Lighter transparent */
+        #chatbot .chat-input input { flex-grow: 1; background: var(--bg-primary); border: 1px solid #e2e8f0; color: var(--text-primary); padding: 0.8rem; border-radius: 20px; }
+        #impact-tracker .charts-container { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        #impact-tracker .chart-card { background: var(--bg-secondary); padding: 1.5rem; border-radius: 12px; }
+        #impact-tracker .bar-chart { display: flex; justify-content: space-around; align-items: flex-end; height: 200px; }
+        #impact-tracker .bar { width: 40px; background: var(--accent-primary); border-radius: 5px 5px 0 0; position: relative; animation: grow 1.5s ease-out;}
+        @keyframes grow { from { height: 0; } }
+        #impact-tracker .bar span { position: absolute; bottom: -25px; width: 100%; left: 0; font-size: 0.8rem; color: var(--text-secondary); }
+        #impact-tracker .doughnut-chart { width: 150px; height: 150px; border-radius: 50%; background: conic-gradient(var(--accent-secondary) 0% 45%, var(--accent-gold) 45% 75%, var(--accent-primary) 75% 100%); margin: 1rem auto;}
+        #leaderboard thead { background-color: #ebf4f8; } /* Lighter header */
+        #leaderboard tbody tr:hover { background-color: #f0f7f9; } /* Lighter hover */
+        #leaderboard .rank-1, .rank-2, .rank-3 { color: var(--accent-gold); }
+        #leaderboard .current-user { background-color: rgba(66, 153, 225, 0.2) !important; color: var(--accent-primary); font-weight: 600;} /* Lighter current user highlight */
+        #leaderboard .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.8); /* Table background with transparency */
+            border-radius: 8px;
+            overflow: hidden; /* For rounded corners on table */
+            box-shadow: var(--shadow);
+        }
+        #leaderboard .leaderboard-table th, #leaderboard .leaderboard-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Lighter border */
+        }
+        /* --- KEYFRAME ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px var(--accent-gold); }
+            50% { box-shadow: 0 0 25px var(--accent-gold), 0 0 10px var(--accent-primary); }
+        }
+
+        @keyframes shimmer {
+             0% { background-position: -500px 0; }
+             100% { background-position: 500px 0; }
+        }#upload-modal {
+            transition: opacity 0.3s ease;
+        }
+
+        #upload-modal .card {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        /* Style the file input button (Submit Proof Button) */
+        #submit-proof-btn {
+            background-color: var(--accent-secondary); 
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+        
+        #submit-proof-btn[disabled] {
+            background-color: var(--text-secondary) !important;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        #submit-proof-btn:not([disabled]):hover {
+            background-color: #319795 !important;
+            transform: translateY(-1px);
+        }
+
+        /* Style the Cancel button */
+        #upload-modal button:last-child {
+            background-color: var(--text-secondary);
+            transition: background-color 0.3s;
+        }
+
+        #upload-modal button:last-child:hover {
+            background-color: #718096;
+        }
+
+        /* Style the display text for file name */
+        #fileNameDisplay {
+            font-style: italic;
+            color: var(--text-secondary);
+            padding-top: 0.5rem;
+        }
+#leaderboard .leaderboard-table thead th {
+            background-color: rgba(237, 242, 247, 0.9); /* Lighter header background */
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        #leaderboard .leaderboard-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+        #leaderboard .leaderboard-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        #leaderboard .user-info {
+            display: flex;
+            align-items: center;
+        }
+        #leaderboard .user-info img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 0.8rem;
+            border: 1px solid var(--accent-secondary);
+        }
+
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .container { flex-direction: column; height: auto;}
+            .sidebar { width: 100%; height: auto; flex-direction: row; align-items: center; padding: 1rem; overflow-x: auto;}
+            .main-content { padding: 1rem; }
+            #eco-profile .profile-grid, #impact-tracker .charts-container { grid-template-columns: 1fr; }
+        }
